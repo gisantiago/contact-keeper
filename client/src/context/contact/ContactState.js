@@ -40,7 +40,7 @@ const ContactState = props => {
     ]
   };
 
-  const [sate, dispatch] = useReducer(ContactReducer, initialState);
+  const [state, dispatch] = useReducer(ContactReducer, initialState);
 
   // Add Contact
 
@@ -57,13 +57,13 @@ const ContactState = props => {
   // Clear filter
 
   return (
-    <contactContext.Provider
+    <ContactContext.Provider
       value={{
         contacts: state.contacts
       }}
     >
       {props.children}
-    </contactContext.Provider>
+    </ContactContext.Provider>
   );
 };
 
