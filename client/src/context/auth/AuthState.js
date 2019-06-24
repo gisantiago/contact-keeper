@@ -1,6 +1,8 @@
 import React, { useReducer } from 'react';
-import AuthtContext from './authContext';
-import AuthReducer from './authReducer';
+import axios from 'axios';
+import AuthContext from './authContext';
+import authReducer from './authReducer';
+
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -11,8 +13,6 @@ import {
   LOGOUT,
   CLEAR_ERRORS
 } from '../types';
-import contactContext from './contactContext';
-import { stat } from 'fs';
 
 const AuthState = props => {
   const initialState = {
@@ -23,7 +23,7 @@ const AuthState = props => {
     error: null
   };
 
-  const [state, dispatch] = useReducer(AuthReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Load User
 
