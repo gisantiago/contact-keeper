@@ -3,7 +3,6 @@ import axios from 'axios';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import setAuthToken from '../../utils/setAuthToken';
-
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -40,9 +39,7 @@ const AuthState = props => {
         payload: res.data
       });
     } catch (err) {
-      dispatch({
-        type: AUTH_ERROR
-      });
+      dispatch({ type: AUTH_ERROR });
     }
   };
 
@@ -58,14 +55,14 @@ const AuthState = props => {
       const res = await axios.post('/api/users', formData, config);
 
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: REGISTER_SUCCESS,
         payload: res.data
       });
 
       loadUser();
     } catch (err) {
       dispatch({
-        type: LOGIN_FAIL,
+        type: REGISTER_FAIL,
         payload: err.response.data.msg
       });
     }
@@ -83,31 +80,24 @@ const AuthState = props => {
       const res = await axios.post('/api/auth', formData, config);
 
       dispatch({
-        type: REGISTER_SUCCESS,
+        type: LOGIN_SUCCESS,
         payload: res.data
       });
 
       loadUser();
     } catch (err) {
       dispatch({
-        type: REGISTER_FAIL,
+        type: LOGIN_FAIL,
         payload: err.response.data.msg
       });
     }
   };
 
   // Logout
-  const logout = () => 
-    dispatch({ 
-      type: LOGOUT
-     });
-  
+  const logout = () => dispatch({ type: LOGOUT });
 
   // Clear Errors
-  const clearErrors = () =>
-    dispatch({
-      type: CLEAR_ERRORS
-    });
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   return (
     <AuthContext.Provider
